@@ -13,7 +13,7 @@ namespace DigitalLibrary
             _userRepository = new UserRepository();
         }
 
-        public void AddUser(UserAddingData userAddingData)
+        public void AddUser(UserData userAddingData)
         {
             if (string.IsNullOrEmpty(userAddingData.Name))
                 throw new ArgumentNullException();
@@ -40,7 +40,7 @@ namespace DigitalLibrary
             return _userRepository.FindAll();
         }
 
-        public void UpdateUser(UserUpdatingData userUpdatingData)
+        public void UpdateUser(UserData userUpdatingData)
         {
             if (string.IsNullOrEmpty(userUpdatingData.Name))
                 throw new ArgumentNullException();
@@ -60,7 +60,7 @@ namespace DigitalLibrary
             _userRepository.UpdateById(userUpdatingData.Id, user);
         }
 
-        public void DeleteUser(FindByIdData findUserByIdData)
+        public void DeleteUser(UserData findUserByIdData)
         {
             if (_userRepository.FindById(findUserByIdData.Id) == null)
                 throw new UserNotFoundException();
@@ -68,7 +68,7 @@ namespace DigitalLibrary
             _userRepository.DeleteById(findUserByIdData.Id);
         }
 
-        public int UserBooks(FindByIdData findUserByIdData)
+        public int UserBooks(UserData findUserByIdData)
         {
             if (_userRepository.FindById(findUserByIdData.Id) == null)
                 throw new UserNotFoundException();

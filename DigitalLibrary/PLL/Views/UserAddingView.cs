@@ -13,7 +13,7 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var userAddingData = new UserAddingData();
+            var userAddingData = new UserData();
 
             Console.WriteLine("Введите имя пользователя:");
             userAddingData.Name = Console.ReadLine();

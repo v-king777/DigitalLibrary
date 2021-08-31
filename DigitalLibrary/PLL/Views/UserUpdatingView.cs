@@ -13,7 +13,7 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var userUpdatingData = new UserUpdatingData();
+            var userUpdatingData = new UserData();
 
             Console.WriteLine("Введите Id пользователя:");
             int.TryParse(Console.ReadLine(), out int id);

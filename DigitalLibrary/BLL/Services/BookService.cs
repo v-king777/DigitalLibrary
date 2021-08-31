@@ -12,7 +12,7 @@ namespace DigitalLibrary
             _bookRepository = new BookRepository();
         }
 
-        public void AddBook(BookAddingData bookAddingData)
+        public void AddBook(BookData bookAddingData)
         {
             if (string.IsNullOrEmpty(bookAddingData.Title))
                 throw new ArgumentNullException();
@@ -41,7 +41,7 @@ namespace DigitalLibrary
             return _bookRepository.FindAll();
         }
 
-        public void UpdateBook(BookUpdatingData bookUpdatingData)
+        public void UpdateBook(BookData bookUpdatingData)
         {
             if (string.IsNullOrEmpty(bookUpdatingData.Title))
                 throw new ArgumentNullException();
@@ -69,7 +69,7 @@ namespace DigitalLibrary
             _bookRepository.UpdateById(bookUpdatingData.Id, book);
         }
 
-        public void DeleteBook(FindByIdData findBookByIdData)
+        public void DeleteBook(BookData findBookByIdData)
         {
             if (_bookRepository.FindById(findBookByIdData.Id) == null)
                 throw new BookNotFoundException();
@@ -77,7 +77,7 @@ namespace DigitalLibrary
             _bookRepository.DeleteById(findBookByIdData.Id);
         }
 
-        public void HandOverBook(FindByIdData findBookByIdData, FindByIdData findUserByIdData)
+        public void HandOverBook(BookData findBookByIdData, BookData findUserByIdData)
         {
             if (_bookRepository.FindById(findBookByIdData.Id) == null)
                 throw new BookNotFoundException();
@@ -91,7 +91,7 @@ namespace DigitalLibrary
             _bookRepository.HandOverById(findBookByIdData.Id, findUserByIdData.Id);
         }
 
-        public void ReturnBook(FindByIdData findBookByIdData)
+        public void ReturnBook(BookData findBookByIdData)
         {
             if (_bookRepository.FindById(findBookByIdData.Id) == null)
                 throw new BookNotFoundException();

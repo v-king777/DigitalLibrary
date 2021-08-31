@@ -1,6 +1,6 @@
 ﻿namespace DigitalLibrary
 {
-    public class UserUpdatingData
+    public class UserData
     {
         public int Id { get; set; }
 

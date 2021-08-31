@@ -13,7 +13,7 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var bookAddingData = new BookAddingData();
+            var bookAddingData = new BookData();
 
             Console.WriteLine("Введите название книги:");
             bookAddingData.Title = Console.ReadLine();

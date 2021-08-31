@@ -13,7 +13,7 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var findBookByIdData = new FindByIdData();
+            var findBookByIdData = new BookData();
 
             Console.WriteLine("Введите Id книги:");
             int.TryParse(Console.ReadLine(), out int bookId);
