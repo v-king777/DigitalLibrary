@@ -45,6 +45,11 @@ namespace DigitalLibrary
                 AlertMessage.Show("Введите корректное значение!");
             }
 
+            catch (BookNotFoundException)
+            {
+                AlertMessage.Show("По данному запросу ничего не найдено!");
+            }
+
             catch (Exception ex)
             {
                 AlertMessage.Show("Произошла ошибка!\n" + ex.Message);

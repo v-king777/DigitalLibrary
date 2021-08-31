@@ -39,7 +39,7 @@ namespace DigitalLibrary
             _bookRepository.Create(book);
         }
 
-        public IEnumerable<Book> FindAllBooks()
+        public List<Book> FindAllBooks()
         {
             return _bookRepository.FindAll();
         }
@@ -105,7 +105,7 @@ namespace DigitalLibrary
             _bookRepository.ReturnById(findBookByIdData.Id);
         }
 
-        public IEnumerable<Book> FindBooksByGenreAndYear(string genre, string startYear, string endYear)
+        public List<Book> FindBooksByGenreAndYear(string genre, string startYear, string endYear)
         {
             if (string.IsNullOrEmpty(genre))
                 throw new ArgumentNullException();
@@ -113,21 +113,48 @@ namespace DigitalLibrary
             if (string.IsNullOrEmpty(startYear))
                 throw new ArgumentNullException();
 
-            if (!int.TryParse(startYear, out int year1))
+            if (string.IsNullOrEmpty(endYear))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(endYear))
+            if (!int.TryParse(startYear, out int year1))
                 throw new ArgumentNullException();
 
             if (!int.TryParse(endYear, out int year2))
                 throw new ArgumentNullException();
 
-            return _bookRepository.FindByGenreAndYear(genre, year1, year2);
+            var books = _bookRepository.FindByGenreAndYear(genre, year1, year2);
+
+            if (books.Count == 0)
+                throw new BookNotFoundException();
+
+            return books;
         }
 
         public Book FindLastYearBook()
         {
             return _bookRepository.FindLastYear();
+        }
+
+        public int CountBooksByAuthor(string author)
+        {
+            if (string.IsNullOrEmpty(author))
+                throw new ArgumentNullException();
+
+            if (_bookRepository.CountByAuthor(author) == 0)
+                throw new BookNotFoundException();
+
+            return _bookRepository.CountByAuthor(author);
+        }
+
+        public int CountBooksByGenre(string genre)
+        {
+            if (string.IsNullOrEmpty(genre))
+                throw new ArgumentNullException();
+
+            if (_bookRepository.CountByGenre(genre) == 0)
+                throw new BookNotFoundException();
+
+            return _bookRepository.CountByGenre(genre);
         }
     }
 }

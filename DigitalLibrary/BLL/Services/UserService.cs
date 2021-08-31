@@ -35,7 +35,7 @@ namespace DigitalLibrary
             _userRepository.Create(user);
         }
 
-        public IEnumerable<User> FindAllUsers()
+        public List<User> FindAllUsers()
         {
             return _userRepository.FindAll();
         }

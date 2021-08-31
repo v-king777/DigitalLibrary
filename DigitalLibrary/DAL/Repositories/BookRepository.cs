@@ -15,7 +15,7 @@ namespace DigitalLibrary
             }
         }
 
-        public IEnumerable<Book> FindAll()
+        public List<Book> FindAll()
         {
             using (var db = new AppContext())
             {
@@ -84,7 +84,7 @@ namespace DigitalLibrary
             }
         }
 
-        public IEnumerable<Book> FindByGenreAndYear(string genre, int year1, int year2)
+        public List<Book> FindByGenreAndYear(string genre, int year1, int year2)
         {
             using (var db = new AppContext())
             {
@@ -101,13 +101,29 @@ namespace DigitalLibrary
                 return db.Books.Where(x => x.Year == db.Books.Max(x => x.Year)).FirstOrDefault();
             }
         }
+
+        public int CountByAuthor(string author)
+        {
+            using (var db = new AppContext())
+            {
+                return db.Books.Where(x => x.Author == author).ToList().Count();
+            }
+        }
+
+        public int CountByGenre(string genre)
+        {
+            using (var db = new AppContext())
+            {
+                return db.Books.Where(x => x.Genre == genre).ToList().Count();
+            }
+        }
     }
 
     public interface IBookRepository
     {
         void Create(Book book);
 
-        IEnumerable<Book> FindAll();
+        List<Book> FindAll();
 
         Book FindById(int id);
 
@@ -121,8 +137,12 @@ namespace DigitalLibrary
 
         bool IsExist(int id);
 
-        IEnumerable<Book> FindByGenreAndYear(string genre, int year1, int year2);
+        List<Book> FindByGenreAndYear(string genre, int year1, int year2);
 
         Book FindLastYear();
+
+        int CountByAuthor(string author);
+
+        int CountByGenre(string genre);
     }
 }

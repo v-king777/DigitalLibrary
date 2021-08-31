@@ -20,6 +20,8 @@
         public static UserBooksCountingView userBooksCountingView;
         public static BookFindingByGenreAndYearView bookFindingByGenreAndYearView;
         public static BookFindingLastYearView bookFindingLastYearView;
+        public static BookCountingByAuthorView bookCountingByAuthorView;
+        public static BookCountingByGenreView bookCountingByGenreView;
 
         static void Main(string[] args)
         {
@@ -41,6 +43,8 @@
             userBooksCountingView = new UserBooksCountingView(userService);
             bookFindingByGenreAndYearView = new BookFindingByGenreAndYearView(bookService);
             bookFindingLastYearView = new BookFindingLastYearView(bookService);
+            bookCountingByAuthorView = new BookCountingByAuthorView(bookService);
+            bookCountingByGenreView = new BookCountingByGenreView(bookService);
 
             while (true)
             {
