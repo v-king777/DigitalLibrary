@@ -124,5 +124,10 @@ namespace DigitalLibrary
 
             return _bookRepository.FindByGenreAndYear(genre, year1, year2);
         }
+
+        public Book FindLastYearBook()
+        {
+            return _bookRepository.FindLastYear();
+        }
     }
 }

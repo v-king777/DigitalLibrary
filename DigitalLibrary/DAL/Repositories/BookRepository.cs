@@ -93,6 +93,14 @@ namespace DigitalLibrary
                     .ToList();
             }
         }
+
+        public Book FindLastYear()
+        {
+            using (var db = new AppContext())
+            {
+                return db.Books.Where(x => x.Year == db.Books.Max(x => x.Year)).FirstOrDefault();
+            }
+        }
     }
 
     public interface IBookRepository
@@ -114,5 +122,7 @@ namespace DigitalLibrary
         bool IsExist(int id);
 
         IEnumerable<Book> FindByGenreAndYear(string genre, int year1, int year2);
+
+        Book FindLastYear();
     }
 }
