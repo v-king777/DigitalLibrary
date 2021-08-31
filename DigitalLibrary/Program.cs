@@ -16,6 +16,7 @@
         public static UserDeletingView userDeletingView;
         public static BookDeletingView bookDeletingView;
         public static BookHandOveringView bookHandOveringView;
+        public static BookReturningView bookReturningView;
 
         static void Main(string[] args)
         {
@@ -33,6 +34,7 @@
             userDeletingView = new UserDeletingView(userService);
             bookDeletingView = new BookDeletingView(bookService);
             bookHandOveringView = new BookHandOveringView(bookService);
+            bookReturningView = new BookReturningView(bookService);
 
             while (true)
             {

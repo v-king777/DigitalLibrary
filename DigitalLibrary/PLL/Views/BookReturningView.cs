@@ -2,11 +2,11 @@
 
 namespace DigitalLibrary
 {
-    public class BookDeletingView
+    public class BookReturningView
     {
         private BookService _bookService;
 
-        public BookDeletingView(BookService bookService)
+        public BookReturningView(BookService bookService)
         {
             _bookService = bookService;
         }
@@ -16,14 +16,14 @@ namespace DigitalLibrary
             var findBookByIdData = new FindByIdData();
 
             Console.WriteLine("Введите Id книги:");
-            int.TryParse(Console.ReadLine(), out int id);
-            findBookByIdData.Id = id;
+            int.TryParse(Console.ReadLine(), out int bookId);
+            findBookByIdData.Id = bookId;
 
             try
             {
-                _bookService.DeleteBook(findBookByIdData);
+                _bookService.ReturnBook(findBookByIdData);
 
-                SuccessMessage.Show("Книга успешно удалена!");
+                SuccessMessage.Show($"Книга успешно возвращена в библиотеку");
             }
 
             catch (BookNotFoundException)

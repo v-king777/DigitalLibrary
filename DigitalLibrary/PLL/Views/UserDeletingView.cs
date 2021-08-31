@@ -13,15 +13,15 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var findByIdData = new FindByIdData();
+            var findUserByIdData = new FindByIdData();
 
             Console.WriteLine("Введите Id пользователя:");
             int.TryParse(Console.ReadLine(), out int id);
-            findByIdData.Id = id;
+            findUserByIdData.Id = id;
 
             try
             {
-                _userService.DeleteUser(findByIdData);
+                _userService.DeleteUser(findUserByIdData);
 
                 SuccessMessage.Show("Пользователь успешно удалён!");
             }
