@@ -10,6 +10,10 @@
 
         public string Year { get; set; }
 
+        public string StartYear { get; set; }
+
+        public string EndYear { get; set; }
+
         public string Genre { get; set; }
     }
 }

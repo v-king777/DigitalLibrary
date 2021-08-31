@@ -84,11 +84,13 @@ namespace DigitalLibrary
             }
         }
 
-        public IEnumerable<Book> FindByGenre(string genre)
+        public IEnumerable<Book> FindByGenreAndYear(string genre, int year1, int year2)
         {
             using (var db = new AppContext())
             {
-                return db.Books.Where(x => x.Genre.Contains(genre)).ToList();
+                return db.Books
+                    .Where(x => x.Genre.Contains(genre) && x.Year >= year1 && x.Year <= year2)
+                    .ToList();
             }
         }
     }
@@ -111,6 +113,6 @@ namespace DigitalLibrary
 
         bool IsExist(int id);
 
-        IEnumerable<Book> FindByGenre(string genre);
+        IEnumerable<Book> FindByGenreAndYear(string genre, int year1, int year2);
     }
 }

@@ -9,7 +9,7 @@ namespace DigitalLibrary
             InfoMessage.Show("\n\t<<< ЭЛЕКТРОННАЯ БИБЛИОТЕКА >>>\n");
             Console.WriteLine("Добавить книгу (нажмите 1)");
             Console.WriteLine("Показать список всех книг по алфавиту (нажмите 2)");
-            Console.WriteLine("Показать список книг по жанру (нажмите 3)");
+            Console.WriteLine("Показать список книг по жанру и дате (нажмите 3)");
             Console.WriteLine("Редактировать данные книги (нажмите 4)");
             Console.WriteLine("Удалить книгу (нажмите 5)");
             Console.WriteLine("Выдать книгу на руки пользователю (нажмите 6)");
@@ -31,7 +31,7 @@ namespace DigitalLibrary
 
                 case "3":
                     {
-                        Program.bookFindingGenreView.Show();
+                        Program.bookFindingByGenreAndYearView.Show();
                         break;
                     }
 

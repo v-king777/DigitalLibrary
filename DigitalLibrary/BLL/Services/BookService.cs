@@ -105,12 +105,24 @@ namespace DigitalLibrary
             _bookRepository.ReturnById(findBookByIdData.Id);
         }
 
-        public IEnumerable<Book> FindBooksByGenre(string genre)
+        public IEnumerable<Book> FindBooksByGenreAndYear(string genre, string startYear, string endYear)
         {
             if (string.IsNullOrEmpty(genre))
                 throw new ArgumentNullException();
 
-            return _bookRepository.FindByGenre(genre);
+            if (string.IsNullOrEmpty(startYear))
+                throw new ArgumentNullException();
+
+            if (!int.TryParse(startYear, out int year1))
+                throw new ArgumentNullException();
+
+            if (string.IsNullOrEmpty(endYear))
+                throw new ArgumentNullException();
+
+            if (!int.TryParse(endYear, out int year2))
+                throw new ArgumentNullException();
+
+            return _bookRepository.FindByGenreAndYear(genre, year1, year2);
         }
     }
 }
