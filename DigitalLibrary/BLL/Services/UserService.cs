@@ -48,6 +48,12 @@ namespace DigitalLibrary
             if (string.IsNullOrEmpty(userUpdatingData.Email))
                 throw new ArgumentNullException();
 
+            if (!new EmailAddressAttribute().IsValid(userUpdatingData.Email))
+                throw new ArgumentNullException();
+
+            if (_userRepository.FindByEmail(userUpdatingData.Email) != null)
+                throw new UserExistsException();
+
             if (_userRepository.FindById(userUpdatingData.Id) == null)
                 throw new UserNotFoundException();
 

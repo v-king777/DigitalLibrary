@@ -30,7 +30,7 @@ namespace DigitalLibrary
 
             catch (ArgumentNullException)
             {
-                AlertMessage.Show("Введите корректные значения!");
+                AlertMessage.Show("Введите корректное значение!");
             }
 
             catch (UserExistsException)

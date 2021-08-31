@@ -34,7 +34,12 @@ namespace DigitalLibrary
 
             catch (ArgumentNullException)
             {
-                AlertMessage.Show("Введите корректные значения!");
+                AlertMessage.Show("Введите корректное значение!");
+            }
+
+            catch (UserExistsException)
+            {
+                AlertMessage.Show("Пользователь с таким email уже существует!");
             }
 
             catch (UserNotFoundException)

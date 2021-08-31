@@ -83,6 +83,14 @@ namespace DigitalLibrary
                 return book.UserId != null;
             }
         }
+
+        public IEnumerable<Book> FindByGenre(string genre)
+        {
+            using (var db = new AppContext())
+            {
+                return db.Books.Where(x => x.Genre.Contains(genre)).ToList();
+            }
+        }
     }
 
     public interface IBookRepository
@@ -102,5 +110,7 @@ namespace DigitalLibrary
         void ReturnById(int id);
 
         bool IsExist(int id);
+
+        IEnumerable<Book> FindByGenre(string genre);
     }
 }

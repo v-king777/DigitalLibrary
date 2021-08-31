@@ -18,6 +18,7 @@
         public static BookHandOveringView bookHandOveringView;
         public static BookReturningView bookReturningView;
         public static UserBooksCountingView userBooksCountingView;
+        public static BookFindingGenreView bookFindingGenreView;
 
         static void Main(string[] args)
         {
@@ -37,6 +38,7 @@
             bookHandOveringView = new BookHandOveringView(bookService);
             bookReturningView = new BookReturningView(bookService);
             userBooksCountingView = new UserBooksCountingView(userService);
+            bookFindingGenreView = new BookFindingGenreView(bookService);
 
             while (true)
             {

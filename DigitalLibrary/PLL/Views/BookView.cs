@@ -8,11 +8,12 @@ namespace DigitalLibrary
         {
             InfoMessage.Show("\n\t<<< ЭЛЕКТРОННАЯ БИБЛИОТЕКА >>>\n");
             Console.WriteLine("Добавить книгу (нажмите 1)");
-            Console.WriteLine("Показать список книг по алфавиту (нажмите 2)");
-            Console.WriteLine("Редактировать данные книги (нажмите 3)");
-            Console.WriteLine("Удалить книгу (нажмите 4)");
-            Console.WriteLine("Выдать книгу на руки пользователю (нажмите 5)");
-            Console.WriteLine("Вернуть книгу в библиотеку (нажмите 6)");
+            Console.WriteLine("Показать список всех книг по алфавиту (нажмите 2)");
+            Console.WriteLine("Показать список книг по жанру (нажмите 3)");
+            Console.WriteLine("Редактировать данные книги (нажмите 4)");
+            Console.WriteLine("Удалить книгу (нажмите 5)");
+            Console.WriteLine("Выдать книгу на руки пользователю (нажмите 6)");
+            Console.WriteLine("Вернуть книгу в библиотеку (нажмите 7)");
 
             switch (Console.ReadLine())
             {
@@ -30,23 +31,29 @@ namespace DigitalLibrary
 
                 case "3":
                     {
-                        Program.bookUpdatingView.Show();
+                        Program.bookFindingGenreView.Show();
                         break;
                     }
 
                 case "4":
                     {
-                        Program.bookDeletingView.Show();
+                        Program.bookUpdatingView.Show();
                         break;
                     }
 
                 case "5":
                     {
-                        Program.bookHandOveringView.Show();
+                        Program.bookDeletingView.Show();
                         break;
                     }
 
                 case "6":
+                    {
+                        Program.bookHandOveringView.Show();
+                        break;
+                    }
+
+                case "7":
                     {
                         Program.bookReturningView.Show();
                         break;

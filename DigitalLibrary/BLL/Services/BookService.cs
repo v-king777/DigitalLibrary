@@ -20,17 +20,20 @@ namespace DigitalLibrary
             if (string.IsNullOrEmpty(bookAddingData.Author))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(bookAddingData.Genre))
+            if (string.IsNullOrEmpty(bookAddingData.Year))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(bookAddingData.Year))
+            if (!int.TryParse(bookAddingData.Year, out int year))
+                throw new ArgumentNullException();
+
+            if (string.IsNullOrEmpty(bookAddingData.Genre))
                 throw new ArgumentNullException();
 
             var book = new Book {
                 Title = bookAddingData.Title,
                 Author = bookAddingData.Author,
-                Genre = bookAddingData.Genre,
-                Year = bookAddingData.Year
+                Year = year,
+                Genre = bookAddingData.Genre
             };
 
             _bookRepository.Create(book);
@@ -52,6 +55,9 @@ namespace DigitalLibrary
             if (string.IsNullOrEmpty(bookUpdatingData.Year))
                 throw new ArgumentNullException();
 
+            if (!int.TryParse(bookUpdatingData.Year, out int year))
+                throw new ArgumentNullException();
+
             if (string.IsNullOrEmpty(bookUpdatingData.Genre))
                 throw new ArgumentNullException();
 
@@ -62,7 +68,7 @@ namespace DigitalLibrary
             {
                 Title = bookUpdatingData.Title,
                 Author = bookUpdatingData.Author,
-                Year = bookUpdatingData.Year,
+                Year = year,
                 Genre = bookUpdatingData.Genre
             };
 
@@ -97,6 +103,14 @@ namespace DigitalLibrary
                 throw new BookNotFoundException();
 
             _bookRepository.ReturnById(findBookByIdData.Id);
+        }
+
+        public IEnumerable<Book> FindBooksByGenre(string genre)
+        {
+            if (string.IsNullOrEmpty(genre))
+                throw new ArgumentNullException();
+
+            return _bookRepository.FindByGenre(genre);
         }
     }
 }
