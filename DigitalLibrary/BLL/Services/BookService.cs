@@ -76,5 +76,16 @@ namespace DigitalLibrary
 
             _bookRepository.DeleteById(findByIdData.Id);
         }
+
+        public void HandOverBook(FindByIdData findBookByIdData, FindByIdData findUserByIdData)
+        {
+            if (_bookRepository.FindById(findBookByIdData.Id) == null)
+                throw new BookNotFoundException();
+
+            if (_bookRepository.FindById(findUserByIdData.Id) == null)
+                throw new UserNotFoundException();
+
+            _bookRepository.HandOverById(findBookByIdData.Id, findUserByIdData.Id);
+        }
     }
 }

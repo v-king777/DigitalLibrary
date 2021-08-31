@@ -40,7 +40,7 @@ namespace DigitalLibrary
 
             catch (ArgumentNullException)
             {
-                AlertMessage.Show("Введите корректные данные!");
+                AlertMessage.Show("Введите корректные значения!");
             }
 
             catch (BookNotFoundException)

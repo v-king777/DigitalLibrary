@@ -11,6 +11,7 @@ namespace DigitalLibrary
             Console.WriteLine("Показать список книг по алфавиту (нажмите 2)");
             Console.WriteLine("Редактировать данные книги (нажмите 3)");
             Console.WriteLine("Удалить книгу (нажмите 4)");
+            Console.WriteLine("Выдать книгу на руки пользователю (нажмите 5)");
 
             switch (Console.ReadLine())
             {
@@ -35,6 +36,12 @@ namespace DigitalLibrary
                 case "4":
                     {
                         Program.bookDeletingView.Show();
+                        break;
+                    }
+
+                case "5":
+                    {
+                        Program.bookHandOveringView.Show();
                         break;
                     }
             }
