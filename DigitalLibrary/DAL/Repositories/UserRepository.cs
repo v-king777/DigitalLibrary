@@ -22,7 +22,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                return db.Users.ToList();
+                return db.Users.OrderBy(x => x.Name).ToList();
             }
         }
 

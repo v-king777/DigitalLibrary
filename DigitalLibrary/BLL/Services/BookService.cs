@@ -68,5 +68,13 @@ namespace DigitalLibrary
 
             _bookRepository.UpdateById(bookUpdatingData.Id, book);
         }
+
+        public void DeleteBook(DeletingByIdData deletingByIdData)
+        {
+            if (_bookRepository.FindById(deletingByIdData.Id) == null)
+                throw new BookNotFoundException();
+
+            _bookRepository.DeleteById(deletingByIdData.Id);
+        }
     }
 }

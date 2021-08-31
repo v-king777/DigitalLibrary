@@ -59,5 +59,13 @@ namespace DigitalLibrary
 
             _userRepository.UpdateById(userUpdatingData.Id, user);
         }
+
+        public void DeleteUser(DeletingByIdData deletingByIdData)
+        {
+            if (_userRepository.FindById(deletingByIdData.Id) == null)
+                throw new UserNotFoundException();
+
+            _userRepository.DeleteById(deletingByIdData.Id);
+        }
     }
 }

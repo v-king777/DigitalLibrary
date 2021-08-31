@@ -20,8 +20,8 @@ namespace DigitalLibrary
                 foreach (var user in allUsers)
                 {
                     SuccessMessage.Show(
-                        $"Id: {user.Id}\t" +
-                        $"Name: {user.Name}\t" +
+                        $"Id: {user.Id}, " +
+                        $"Name: {user.Name}, " +
                         $"Email: {user.Email}");
                 }
             }

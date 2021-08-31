@@ -20,9 +20,9 @@ namespace DigitalLibrary
                 foreach (var book in allBooks)
                 {
                     SuccessMessage.Show(
-                        $"Id: {book.Id}\t" +
-                        $"Title: {book.Title}\t" +
-                        $"UserId: {book.UserId}");
+                        $"Id: {book.Id}, " +
+                        $"Title: {book.Title}, " +
+                        $"UserId (кому выдана): {book.UserId}");
                 }
             }
 

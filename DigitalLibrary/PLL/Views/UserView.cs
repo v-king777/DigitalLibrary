@@ -8,8 +8,9 @@ namespace DigitalLibrary
         {
             InfoMessage.Show("\n\t<<< ЭЛЕКТРОННАЯ БИБЛИОТЕКА >>>\n");
             Console.WriteLine("Добавить пользователя (нажмите 1)");
-            Console.WriteLine("Показать список пользователей (нажмите 2)");
+            Console.WriteLine("Показать список пользователей по алфавиту (нажмите 2)");
             Console.WriteLine("Редактировать данные пользователя (нажмите 3)");
+            Console.WriteLine("Удалить пользователя (нажмите 4)");
 
             switch (Console.ReadLine())
             {
@@ -28,6 +29,12 @@ namespace DigitalLibrary
                 case "3":
                     {
                         Program.userUpdatingView.Show();
+                        break;
+                    }
+
+                case "4":
+                    {
+                        Program.userDeletingView.Show();
                         break;
                     }
             }
