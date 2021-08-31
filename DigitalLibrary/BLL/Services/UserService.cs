@@ -60,12 +60,12 @@ namespace DigitalLibrary
             _userRepository.UpdateById(userUpdatingData.Id, user);
         }
 
-        public void DeleteUser(DeletingByIdData deletingByIdData)
+        public void DeleteUser(FindByIdData findByIdData)
         {
-            if (_userRepository.FindById(deletingByIdData.Id) == null)
+            if (_userRepository.FindById(findByIdData.Id) == null)
                 throw new UserNotFoundException();
 
-            _userRepository.DeleteById(deletingByIdData.Id);
+            _userRepository.DeleteById(findByIdData.Id);
         }
     }
 }

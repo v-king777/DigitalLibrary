@@ -1,6 +1,6 @@
 ﻿namespace DigitalLibrary
 {
-    public class DeletingByIdData
+    public class FindByIdData
     {
         public int Id { get; set; }
     }

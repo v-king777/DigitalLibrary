@@ -13,15 +13,15 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var deletingByIdData = new DeletingByIdData();
+            var findByIdData = new FindByIdData();
 
             Console.WriteLine("Введите Id книги:");
             int.TryParse(Console.ReadLine(), out int id);
-            deletingByIdData.Id = id;
+            findByIdData.Id = id;
 
             try
             {
-                _bookService.DeleteBook(deletingByIdData);
+                _bookService.DeleteBook(findByIdData);
 
                 SuccessMessage.Show("Книга успешно удалена!");
             }

@@ -69,12 +69,12 @@ namespace DigitalLibrary
             _bookRepository.UpdateById(bookUpdatingData.Id, book);
         }
 
-        public void DeleteBook(DeletingByIdData deletingByIdData)
+        public void DeleteBook(FindByIdData findByIdData)
         {
-            if (_bookRepository.FindById(deletingByIdData.Id) == null)
+            if (_bookRepository.FindById(findByIdData.Id) == null)
                 throw new BookNotFoundException();
 
-            _bookRepository.DeleteById(deletingByIdData.Id);
+            _bookRepository.DeleteById(findByIdData.Id);
         }
     }
 }

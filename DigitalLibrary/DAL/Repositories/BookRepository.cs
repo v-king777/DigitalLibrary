@@ -57,7 +57,7 @@ namespace DigitalLibrary
             }
         }
 
-        public void HandOverBook(int bookId, int userId)
+        public void HandOver(int bookId, int userId)
         {
             using (var db = new AppContext())
             {
@@ -68,7 +68,7 @@ namespace DigitalLibrary
             }
         }
 
-        public void ReturnBook(int bookId)
+        public void Return(int bookId)
         {
             using (var db = new AppContext())
             {
@@ -91,8 +91,8 @@ namespace DigitalLibrary
 
         void DeleteById(int id);
 
-        void HandOverBook(int bookId, int userId);
+        void HandOver(int bookId, int userId);
 
-        void ReturnBook(int bookId);
+        void Return(int bookId);
     }
 }
