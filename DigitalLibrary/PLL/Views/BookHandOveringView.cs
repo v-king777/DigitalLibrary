@@ -28,7 +28,7 @@ namespace DigitalLibrary
             {
                 _bookService.HandOverBook(findBookByIdData, findUserByIdData);
 
-                SuccessMessage.Show($"Книга успешно выдана пользователю с Id: {findUserByIdData.Id}");
+                SuccessMessage.Show($"Книга успешно выдана пользователю!");
             }
 
             catch (BookNotFoundException)
@@ -39,6 +39,11 @@ namespace DigitalLibrary
             catch (UserNotFoundException)
             {
                 AlertMessage.Show("Пользователь с таким Id не найден!");
+            }
+
+            catch (BookExistException)
+            {
+                AlertMessage.Show("Книга с таким Id уже на руках!");
             }
 
             catch (Exception ex)

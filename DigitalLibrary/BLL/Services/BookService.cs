@@ -85,6 +85,9 @@ namespace DigitalLibrary
             if (_bookRepository.FindById(findUserByIdData.Id) == null)
                 throw new UserNotFoundException();
 
+            if (_bookRepository.IsExist(findBookByIdData.Id))
+                throw new BookExistException();
+
             _bookRepository.HandOverById(findBookByIdData.Id, findUserByIdData.Id);
         }
 

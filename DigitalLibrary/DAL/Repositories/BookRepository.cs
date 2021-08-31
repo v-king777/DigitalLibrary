@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DigitalLibrary
 {
@@ -68,13 +65,22 @@ namespace DigitalLibrary
             }
         }
 
-        public void ReturnById(int bookId)
+        public void ReturnById(int id)
         {
             using (var db = new AppContext())
             {
-                var book = db.Books.Where(x => x.Id == bookId).FirstOrDefault();
+                var book = db.Books.Where(x => x.Id == id).FirstOrDefault();
                 book.UserId = null;
                 db.SaveChanges();
+            }
+        }
+
+        public bool IsExist(int id)
+        {
+            using (var db = new AppContext())
+            {
+                var book = db.Books.Where(x => x.Id == id).FirstOrDefault();
+                return book.UserId != null;
             }
         }
     }
@@ -93,6 +99,8 @@ namespace DigitalLibrary
 
         void HandOverById(int bookId, int userId);
 
-        void ReturnById(int bookId);
+        void ReturnById(int id);
+
+        bool IsExist(int id);
     }
 }
