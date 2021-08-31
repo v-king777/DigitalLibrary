@@ -22,7 +22,7 @@ namespace DigitalLibrary
             {
                 var count = _bookService.CountBooksByAuthor(bookFindingData.Author);
 
-                SuccessMessage.Show($"Количество книг автора {bookFindingData.Author} - {count}");
+                SuccessMessage.Show($"Количество книг автора {bookFindingData.Author}: {count}");
             }
 
             catch (ArgumentNullException)

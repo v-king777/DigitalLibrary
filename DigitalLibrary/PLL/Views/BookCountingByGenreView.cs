@@ -22,7 +22,7 @@ namespace DigitalLibrary
             {
                 var count = _bookService.CountBooksByGenre(bookFindingData.Genre);
 
-                SuccessMessage.Show($"Количество книг жанра {bookFindingData.Genre} - {count}");
+                SuccessMessage.Show($"Количество книг жанра {bookFindingData.Genre}: {count}");
             }
 
             catch (ArgumentNullException)
