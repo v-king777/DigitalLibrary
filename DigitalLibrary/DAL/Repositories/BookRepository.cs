@@ -34,12 +34,15 @@ namespace DigitalLibrary
             }
         }
 
-        public void UpdateYearById(int id, string newYear)
+        public void UpdateById(int id, Book book)
         {
             using (var db = new AppContext())
             {
                 var updated = db.Books.Where(x => x.Id == id).FirstOrDefault();
-                updated.Year = newYear;
+                updated.Title = book.Title;
+                updated.Author = book.Author;
+                updated.Year = book.Year;
+                updated.Genre = book.Genre;
                 db.SaveChanges();
             }
         }
@@ -84,7 +87,7 @@ namespace DigitalLibrary
 
         Book FindById(int id);
 
-        void UpdateYearById(int id, string newYear);
+        void UpdateById(int id, Book book);
 
         void DeleteById(int id);
 

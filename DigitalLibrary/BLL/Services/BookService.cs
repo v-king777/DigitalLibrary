@@ -40,5 +40,33 @@ namespace DigitalLibrary
         {
             return _bookRepository.FindAll();
         }
+
+        public void UpdateBook(BookUpdatingData bookUpdatingData)
+        {
+            if (string.IsNullOrEmpty(bookUpdatingData.Title))
+                throw new ArgumentNullException();
+
+            if (string.IsNullOrEmpty(bookUpdatingData.Author))
+                throw new ArgumentNullException();
+
+            if (string.IsNullOrEmpty(bookUpdatingData.Year))
+                throw new ArgumentNullException();
+
+            if (string.IsNullOrEmpty(bookUpdatingData.Genre))
+                throw new ArgumentNullException();
+
+            if (_bookRepository.FindById(bookUpdatingData.Id) == null)
+                throw new BookNotFoundException();
+
+            var book = new Book
+            {
+                Title = bookUpdatingData.Title,
+                Author = bookUpdatingData.Author,
+                Year = bookUpdatingData.Year,
+                Genre = bookUpdatingData.Genre
+            };
+
+            _bookRepository.UpdateById(bookUpdatingData.Id, book);
+        }
     }
 }
