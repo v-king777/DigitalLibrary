@@ -7,8 +7,8 @@ namespace DigitalLibrary
         public void Show()
         {
             InfoMessage.Show("\n\t<<< ЭЛЕКТРОННАЯ БИБЛИОТЕКА >>>\n");
-            Console.WriteLine("Для работы с пользователями нажмите 1");
-            Console.WriteLine("Для работы с книгами нажмите 2");
+            Console.WriteLine("Для работы с пользователями введите 1");
+            Console.WriteLine("Для работы с книгами введите 2");
             
             switch (Console.ReadLine())
             {

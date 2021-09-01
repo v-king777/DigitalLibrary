@@ -162,5 +162,15 @@ namespace DigitalLibrary
 
             return booksCount;
         }
+
+        public Book ShowBookDescription(BookData bookData)
+        {
+            var book = _bookRepository.FindById(bookData.Id);
+
+            if (book == null)
+                throw new BookNotFoundException();
+
+            return book;
+        }
     }
 }

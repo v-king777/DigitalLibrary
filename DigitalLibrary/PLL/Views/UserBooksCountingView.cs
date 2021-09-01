@@ -22,7 +22,7 @@ namespace DigitalLibrary
             try
             {
                 var count = _userService.UserBooks(userData);
-                SuccessMessage.Show($"Количество выданных книг: {count}");
+                SuccessMessage.Show($"Количество выданных на руки книг: {count}");
             }
 
             catch (UserNotFoundException)

@@ -7,16 +7,17 @@ namespace DigitalLibrary
         public void Show()
         {
             InfoMessage.Show("\n\t<<< ЭЛЕКТРОННАЯ БИБЛИОТЕКА >>>\n");
-            Console.WriteLine("Добавить книгу (нажмите 1)");
-            Console.WriteLine("Показать список всех книг по алфавиту (нажмите 2)");
-            Console.WriteLine("Поиск книг по жанру и дате (нажмите 3)");
-            Console.WriteLine("Показать последнюю вышедшую книгу (нажмите 4)");
-            Console.WriteLine("Показать количество книг определённого автора (нажмите 5)");
-            Console.WriteLine("Показать количество книг определённого жанра (нажмите 6)");
-            Console.WriteLine("Редактировать данные книги (нажмите 7)");
-            Console.WriteLine("Удалить книгу (нажмите 8)");
-            Console.WriteLine("Выдать книгу на руки пользователю (нажмите 9)");
-            Console.WriteLine("Вернуть книгу в библиотеку (нажмите 10)");
+            Console.WriteLine("Добавить книгу (введите 1)");
+            Console.WriteLine("Поиск книг по жанру и дате (введите 2)");
+            Console.WriteLine("Показать список всех книг по алфавиту (введите 3)");
+            Console.WriteLine("Показать полное описание книги (введите 4)");
+            Console.WriteLine("Показать последнюю вышедшую книгу (введите 5)");
+            Console.WriteLine("Показать количество книг определённого автора (введите 6)");
+            Console.WriteLine("Показать количество книг определённого жанра (введите 7)");
+            Console.WriteLine("Выдать книгу на руки пользователю (введите 8)");
+            Console.WriteLine("Вернуть книгу в библиотеку (введите 9)");
+            Console.WriteLine("Редактировать данные книги (введите 10)");
+            Console.WriteLine("Удалить книгу (введите 11)");
 
             switch (Console.ReadLine())
             {
@@ -28,55 +29,61 @@ namespace DigitalLibrary
 
                 case "2":
                     {
-                        Program.bookFindingAllView.Show();
+                        Program.bookFindingByGenreAndYearView.Show();
                         break;
                     }
 
                 case "3":
                     {
-                        Program.bookFindingByGenreAndYearView.Show();
+                        Program.bookFindingAllView.Show();
                         break;
                     }
 
                 case "4":
                     {
-                        Program.bookFindingLastYearView.Show();
+                        Program.bookFullDescriptionView.Show();
                         break;
                     }
 
                 case "5":
                     {
-                        Program.bookCountingByAuthorView.Show();
+                        Program.bookFindingLastYearView.Show();
                         break;
                     }
 
                 case "6":
                     {
-                        Program.bookCountingByGenreView.Show();
+                        Program.bookCountingByAuthorView.Show();
                         break;
                     }
 
                 case "7":
                     {
-                        Program.bookUpdatingView.Show();
+                        Program.bookCountingByGenreView.Show();
                         break;
                     }
 
                 case "8":
                     {
-                        Program.bookDeletingView.Show();
+                        Program.bookHandOveringView.Show();
                         break;
                     }
 
                 case "9":
                     {
-                        Program.bookHandOveringView.Show();
+                        Program.bookReturningView.Show();
                         break;
                     }
 
                 case "10":
                     {
-                        Program.bookReturningView.Show();
+                        Program.bookUpdatingView.Show();
+                        break;
+                    }
+
+                case "11":
+                    {
+                        Program.bookDeletingView.Show();
                         break;
                     }
             }
