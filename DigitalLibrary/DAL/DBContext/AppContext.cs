@@ -8,10 +8,15 @@ namespace DigitalLibrary
 
         public DbSet<Book> Books { get; set; }
 
+        public AppContext()
+        {
+            Database.EnsureCreated();
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"data source=VOVAN-PC\SQLEXPRESS;database=DigitalLibrary;trusted_connection=true");
+                @"data source=[имя_сервера];database=[имя_базы];trusted_connection=true");
         }
     }
 }

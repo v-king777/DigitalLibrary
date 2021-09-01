@@ -9,7 +9,6 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                db.Database.EnsureCreated();
                 db.Books.Add(book);
                 db.SaveChanges();
             }
@@ -36,10 +35,12 @@ namespace DigitalLibrary
             using (var db = new AppContext())
             {
                 var updated = db.Books.Where(x => x.Id == id).FirstOrDefault();
+
                 updated.Title = book.Title;
                 updated.Author = book.Author;
                 updated.Year = book.Year;
                 updated.Genre = book.Genre;
+
                 db.SaveChanges();
             }
         }
@@ -49,6 +50,7 @@ namespace DigitalLibrary
             using (var db = new AppContext())
             {
                 var deleted = db.Books.Where(x => x.Id == id).FirstOrDefault();
+
                 db.Books.Remove(deleted);
                 db.SaveChanges();
             }
@@ -60,7 +62,9 @@ namespace DigitalLibrary
             {
                 var book = db.Books.Where(x => x.Id == bookId).FirstOrDefault();
                 var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+
                 book.UserId = user.Id;
+
                 db.SaveChanges();
             }
         }
