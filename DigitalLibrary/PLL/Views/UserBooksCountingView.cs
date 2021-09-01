@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class UserBooksCountingView
     {
-        private UserService _userService;
+        private readonly UserService _userService;
 
         public UserBooksCountingView(UserService userService)
         {
@@ -13,15 +13,15 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var findUserByIdData = new UserData();
+            var userData = new UserData();
 
             Console.WriteLine("Введите Id пользователя:");
             int.TryParse(Console.ReadLine(), out int id);
-            findUserByIdData.Id = id;
+            userData.Id = id;
 
             try
             {
-                var count = _userService.UserBooks(findUserByIdData);
+                var count = _userService.UserBooks(userData);
                 SuccessMessage.Show($"Количество выданных книг: {count}");
             }
 

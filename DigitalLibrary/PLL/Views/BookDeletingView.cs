@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookDeletingView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookDeletingView(BookService bookService)
         {
@@ -13,15 +13,15 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var findBookByIdData = new BookData();
+            var bookData = new BookData();
 
             Console.WriteLine("Введите Id книги:");
             int.TryParse(Console.ReadLine(), out int id);
-            findBookByIdData.Id = id;
+            bookData.Id = id;
 
             try
             {
-                _bookService.DeleteBook(findBookByIdData);
+                _bookService.DeleteBook(bookData);
 
                 SuccessMessage.Show("Книга успешно удалена!");
             }

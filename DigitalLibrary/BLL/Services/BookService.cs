@@ -5,35 +5,37 @@ namespace DigitalLibrary
 {
     public class BookService
     {
-        private IBookRepository _bookRepository;
+        private readonly IBookRepository _bookRepository;
+        private readonly IUserRepository _userRepository;
 
         public BookService()
         {
             _bookRepository = new BookRepository();
+            _userRepository = new UserRepository();
         }
 
-        public void AddBook(BookData bookAddingData)
+        public void AddBook(BookData bookData)
         {
-            if (string.IsNullOrEmpty(bookAddingData.Title))
+            if (string.IsNullOrEmpty(bookData.Title))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(bookAddingData.Author))
+            if (string.IsNullOrEmpty(bookData.Author))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(bookAddingData.Year))
+            if (string.IsNullOrEmpty(bookData.Year))
                 throw new ArgumentNullException();
 
-            if (!int.TryParse(bookAddingData.Year, out int year))
+            if (!int.TryParse(bookData.Year, out int year))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(bookAddingData.Genre))
+            if (string.IsNullOrEmpty(bookData.Genre))
                 throw new ArgumentNullException();
 
             var book = new Book {
-                Title = bookAddingData.Title,
-                Author = bookAddingData.Author,
+                Title = bookData.Title,
+                Author = bookData.Author,
                 Year = year,
-                Genre = bookAddingData.Genre
+                Genre = bookData.Genre
             };
 
             _bookRepository.Create(book);
@@ -44,85 +46,85 @@ namespace DigitalLibrary
             return _bookRepository.FindAll();
         }
 
-        public void UpdateBook(BookData bookUpdatingData)
+        public void UpdateBook(BookData bookData)
         {
-            if (string.IsNullOrEmpty(bookUpdatingData.Title))
+            if (string.IsNullOrEmpty(bookData.Title))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(bookUpdatingData.Author))
+            if (string.IsNullOrEmpty(bookData.Author))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(bookUpdatingData.Year))
+            if (string.IsNullOrEmpty(bookData.Year))
                 throw new ArgumentNullException();
 
-            if (!int.TryParse(bookUpdatingData.Year, out int year))
+            if (!int.TryParse(bookData.Year, out int year))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(bookUpdatingData.Genre))
+            if (string.IsNullOrEmpty(bookData.Genre))
                 throw new ArgumentNullException();
 
-            if (_bookRepository.FindById(bookUpdatingData.Id) == null)
+            if (_bookRepository.FindById(bookData.Id) == null)
                 throw new BookNotFoundException();
 
             var book = new Book
             {
-                Title = bookUpdatingData.Title,
-                Author = bookUpdatingData.Author,
+                Title = bookData.Title,
+                Author = bookData.Author,
                 Year = year,
-                Genre = bookUpdatingData.Genre
+                Genre = bookData.Genre
             };
 
-            _bookRepository.UpdateById(bookUpdatingData.Id, book);
+            _bookRepository.UpdateById(bookData.Id, book);
         }
 
-        public void DeleteBook(BookData findBookByIdData)
+        public void DeleteBook(BookData bookData)
         {
-            if (_bookRepository.FindById(findBookByIdData.Id) == null)
+            if (_bookRepository.FindById(bookData.Id) == null)
                 throw new BookNotFoundException();
 
-            _bookRepository.DeleteById(findBookByIdData.Id);
+            _bookRepository.DeleteById(bookData.Id);
         }
 
-        public void HandOverBook(BookData findBookByIdData, BookData findUserByIdData)
+        public void HandOverBook(BookData bookData, UserData userData)
         {
-            if (_bookRepository.FindById(findBookByIdData.Id) == null)
+            if (_bookRepository.FindById(bookData.Id) == null)
                 throw new BookNotFoundException();
 
-            if (_bookRepository.FindById(findUserByIdData.Id) == null)
+            if (_userRepository.FindById(userData.Id) == null)
                 throw new UserNotFoundException();
 
-            if (_bookRepository.IsExist(findBookByIdData.Id))
+            if (_bookRepository.IsExist(bookData.Id))
                 throw new BookExistException();
 
-            _bookRepository.HandOverById(findBookByIdData.Id, findUserByIdData.Id);
+            _bookRepository.HandOverById(bookData.Id, userData.Id);
         }
 
-        public void ReturnBook(BookData findBookByIdData)
+        public void ReturnBook(BookData bookData)
         {
-            if (_bookRepository.FindById(findBookByIdData.Id) == null)
+            if (_bookRepository.FindById(bookData.Id) == null)
                 throw new BookNotFoundException();
 
-            _bookRepository.ReturnById(findBookByIdData.Id);
+            _bookRepository.ReturnById(bookData.Id);
         }
 
-        public List<Book> FindBooksByGenreAndYear(string genre, string startYear, string endYear)
+        public List<Book> FindBooksByGenreAndYear(BookData bookData)
         {
-            if (string.IsNullOrEmpty(genre))
+            if (string.IsNullOrEmpty(bookData.Genre))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(startYear))
+            if (string.IsNullOrEmpty(bookData.StartYear))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(endYear))
+            if (string.IsNullOrEmpty(bookData.EndYear))
                 throw new ArgumentNullException();
 
-            if (!int.TryParse(startYear, out int year1))
+            if (!int.TryParse(bookData.StartYear, out int year1))
                 throw new ArgumentNullException();
 
-            if (!int.TryParse(endYear, out int year2))
+            if (!int.TryParse(bookData.EndYear, out int year2))
                 throw new ArgumentNullException();
 
-            var books = _bookRepository.FindByGenreAndYear(genre, year1, year2);
+            var books = _bookRepository.FindByGenreAndYear(bookData.Genre, year1, year2);
 
             if (books.Count == 0)
                 throw new BookNotFoundException();
@@ -135,26 +137,30 @@ namespace DigitalLibrary
             return _bookRepository.FindLastYear();
         }
 
-        public int CountBooksByAuthor(string author)
+        public int CountBooksByAuthor(BookData bookData)
         {
-            if (string.IsNullOrEmpty(author))
+            if (string.IsNullOrEmpty(bookData.Author))
                 throw new ArgumentNullException();
 
-            if (_bookRepository.CountByAuthor(author) == 0)
+            var booksCount = _bookRepository.CountByAuthor(bookData.Author);
+
+            if (booksCount == 0)
                 throw new BookNotFoundException();
 
-            return _bookRepository.CountByAuthor(author);
+            return booksCount;
         }
 
-        public int CountBooksByGenre(string genre)
+        public int CountBooksByGenre(BookData bookData)
         {
-            if (string.IsNullOrEmpty(genre))
+            if (string.IsNullOrEmpty(bookData.Genre))
                 throw new ArgumentNullException();
 
-            if (_bookRepository.CountByGenre(genre) == 0)
+            var booksCount = _bookRepository.CountByGenre(bookData.Genre);
+
+            if (booksCount == 0)
                 throw new BookNotFoundException();
 
-            return _bookRepository.CountByGenre(genre);
+            return booksCount;
         }
     }
 }

@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookHandOveringView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookHandOveringView(BookService bookService)
         {
@@ -13,20 +13,20 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var findBookByIdData = new BookData();
-            var findUserByIdData = new BookData();
+            var bookData = new BookData();
+            var userData = new UserData();
 
             Console.WriteLine("Введите Id книги:");
             int.TryParse(Console.ReadLine(), out int bookId);
-            findBookByIdData.Id = bookId;
+            bookData.Id = bookId;
 
             Console.WriteLine("Введите Id пользователя:");
             int.TryParse(Console.ReadLine(), out int userId);
-            findUserByIdData.Id = userId;
+            userData.Id = userId;
 
             try
             {
-                _bookService.HandOverBook(findBookByIdData, findUserByIdData);
+                _bookService.HandOverBook(bookData, userData);
 
                 SuccessMessage.Show($"Книга успешно выдана пользователю!");
             }

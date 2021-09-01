@@ -6,30 +6,30 @@ namespace DigitalLibrary
 {
     public class UserService
     {
-        private IUserRepository _userRepository;
+        private readonly IUserRepository _userRepository;
 
         public UserService()
         {
             _userRepository = new UserRepository();
         }
 
-        public void AddUser(UserData userAddingData)
+        public void AddUser(UserData userData)
         {
-            if (string.IsNullOrEmpty(userAddingData.Name))
+            if (string.IsNullOrEmpty(userData.Name))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(userAddingData.Email))
+            if (string.IsNullOrEmpty(userData.Email))
                 throw new ArgumentNullException();
 
-            if (!new EmailAddressAttribute().IsValid(userAddingData.Email))
+            if (!new EmailAddressAttribute().IsValid(userData.Email))
                 throw new ArgumentNullException();
 
-            if (_userRepository.FindByEmail(userAddingData.Email) != null)
+            if (_userRepository.FindByEmail(userData.Email) != null)
                 throw new UserExistsException();
 
             var user = new User {
-                Name = userAddingData.Name,
-                Email = userAddingData.Email
+                Name = userData.Name,
+                Email = userData.Email
             };
 
             _userRepository.Create(user);
@@ -40,46 +40,46 @@ namespace DigitalLibrary
             return _userRepository.FindAll();
         }
 
-        public void UpdateUser(UserData userUpdatingData)
+        public void UpdateUser(UserData userData)
         {
-            if (string.IsNullOrEmpty(userUpdatingData.Name))
+            if (string.IsNullOrEmpty(userData.Name))
                 throw new ArgumentNullException();
 
-            if (string.IsNullOrEmpty(userUpdatingData.Email))
+            if (string.IsNullOrEmpty(userData.Email))
                 throw new ArgumentNullException();
 
-            if (!new EmailAddressAttribute().IsValid(userUpdatingData.Email))
+            if (!new EmailAddressAttribute().IsValid(userData.Email))
                 throw new ArgumentNullException();
 
-            if (_userRepository.FindByEmail(userUpdatingData.Email) != null)
+            if (_userRepository.FindByEmail(userData.Email) != null)
                 throw new UserExistsException();
 
-            if (_userRepository.FindById(userUpdatingData.Id) == null)
+            if (_userRepository.FindById(userData.Id) == null)
                 throw new UserNotFoundException();
 
             var user = new User
             {
-                Name = userUpdatingData.Name,
-                Email = userUpdatingData.Email
+                Name = userData.Name,
+                Email = userData.Email
             };
 
-            _userRepository.UpdateById(userUpdatingData.Id, user);
+            _userRepository.UpdateById(userData.Id, user);
         }
 
-        public void DeleteUser(UserData findUserByIdData)
+        public void DeleteUser(UserData userData)
         {
-            if (_userRepository.FindById(findUserByIdData.Id) == null)
+            if (_userRepository.FindById(userData.Id) == null)
                 throw new UserNotFoundException();
 
-            _userRepository.DeleteById(findUserByIdData.Id);
+            _userRepository.DeleteById(userData.Id);
         }
 
-        public int UserBooks(UserData findUserByIdData)
+        public int UserBooks(UserData userData)
         {
-            if (_userRepository.FindById(findUserByIdData.Id) == null)
+            if (_userRepository.FindById(userData.Id) == null)
                 throw new UserNotFoundException();
 
-            return _userRepository.CountBooksById(findUserByIdData.Id);
+            return _userRepository.CountBooksById(userData.Id);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class UserUpdatingView
     {
-        private UserService _userService;
+        private readonly UserService _userService;
 
         public UserUpdatingView(UserService userService)
         {
@@ -13,21 +13,21 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var userUpdatingData = new UserData();
+            var userData = new UserData();
 
             Console.WriteLine("Введите Id пользователя:");
             int.TryParse(Console.ReadLine(), out int id);
-            userUpdatingData.Id = id; 
+            userData.Id = id; 
 
             Console.WriteLine("Введите новое имя пользователя:");
-            userUpdatingData.Name = Console.ReadLine();
+            userData.Name = Console.ReadLine();
 
             Console.WriteLine("Введите новый адрес электронной почты:");
-            userUpdatingData.Email = Console.ReadLine();
+            userData.Email = Console.ReadLine();
 
             try
             {
-                _userService.UpdateUser(userUpdatingData);
+                _userService.UpdateUser(userData);
 
                 SuccessMessage.Show("Данные пользователя успешно обновлены!");
             }

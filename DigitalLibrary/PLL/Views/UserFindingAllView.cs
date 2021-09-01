@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class UserFindingAllView
     {
-        private UserService _userService;
+        private readonly UserService _userService;
 
         public UserFindingAllView(UserService userService)
         {

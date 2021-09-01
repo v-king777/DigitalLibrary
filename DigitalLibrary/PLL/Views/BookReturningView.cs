@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookReturningView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookReturningView(BookService bookService)
         {
@@ -13,15 +13,15 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var findBookByIdData = new BookData();
+            var bookData = new BookData();
 
             Console.WriteLine("Введите Id книги:");
             int.TryParse(Console.ReadLine(), out int bookId);
-            findBookByIdData.Id = bookId;
+            bookData.Id = bookId;
 
             try
             {
-                _bookService.ReturnBook(findBookByIdData);
+                _bookService.ReturnBook(bookData);
 
                 SuccessMessage.Show($"Книга успешно возвращена в библиотеку");
             }

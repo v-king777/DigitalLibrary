@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class UserAddingView
     {
-        private UserService _userService;
+        private readonly UserService _userService;
 
         public UserAddingView(UserService userService)
         {
@@ -13,17 +13,17 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var userAddingData = new UserData();
+            var userData = new UserData();
 
             Console.WriteLine("Введите имя пользователя:");
-            userAddingData.Name = Console.ReadLine();
+            userData.Name = Console.ReadLine();
 
             Console.WriteLine("Введите адрес электронной почты:");
-            userAddingData.Email = Console.ReadLine();
+            userData.Email = Console.ReadLine();
 
             try
             {
-                _userService.AddUser(userAddingData);
+                _userService.AddUser(userData);
 
                 SuccessMessage.Show("Пользователь успешно добавлен!");
             }

@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookCountingByGenreView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookCountingByGenreView(BookService bookService)
         {
@@ -13,16 +13,16 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var bookFindingData = new BookData();
+            var bookData = new BookData();
 
             Console.WriteLine("Введите жанр книги:");
-            bookFindingData.Genre = Console.ReadLine();
+            bookData.Genre = Console.ReadLine();
 
             try
             {
-                var count = _bookService.CountBooksByGenre(bookFindingData.Genre);
+                var bookCount = _bookService.CountBooksByGenre(bookData);
 
-                SuccessMessage.Show($"Количество книг жанра {bookFindingData.Genre}: {count}");
+                SuccessMessage.Show($"Количество книг жанра {bookData.Genre}: {bookCount}");
             }
 
             catch (ArgumentNullException)

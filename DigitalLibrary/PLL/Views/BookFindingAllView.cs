@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookFindingAllView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookFindingAllView(BookService bookService)
         {

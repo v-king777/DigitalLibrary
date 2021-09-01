@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class UserDeletingView
     {
-        private UserService _userService;
+        private readonly UserService _userService;
 
         public UserDeletingView(UserService userService)
         {
@@ -13,15 +13,15 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var findUserByIdData = new UserData();
+            var userData = new UserData();
 
             Console.WriteLine("Введите Id пользователя:");
             int.TryParse(Console.ReadLine(), out int id);
-            findUserByIdData.Id = id;
+            userData.Id = id;
 
             try
             {
-                _userService.DeleteUser(findUserByIdData);
+                _userService.DeleteUser(userData);
 
                 SuccessMessage.Show("Пользователь успешно удалён!");
             }

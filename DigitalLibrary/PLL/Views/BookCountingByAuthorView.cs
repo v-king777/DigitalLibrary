@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookCountingByAuthorView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookCountingByAuthorView(BookService bookService)
         {
@@ -13,16 +13,16 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var bookFindingData = new BookData();
+            var bookData = new BookData();
 
             Console.WriteLine("Введите автора книги:");
-            bookFindingData.Author = Console.ReadLine();
+            bookData.Author = Console.ReadLine();
 
             try
             {
-                var count = _bookService.CountBooksByAuthor(bookFindingData.Author);
+                var booksCount = _bookService.CountBooksByAuthor(bookData);
 
-                SuccessMessage.Show($"Количество книг автора {bookFindingData.Author}: {count}");
+                SuccessMessage.Show($"Количество книг автора {bookData.Author}: {booksCount}");
             }
 
             catch (ArgumentNullException)

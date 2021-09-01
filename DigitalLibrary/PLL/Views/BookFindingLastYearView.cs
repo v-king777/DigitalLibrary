@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookFindingLastYearView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookFindingLastYearView(BookService bookService)
         {

@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookAddingView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookAddingView(BookService bookService)
         {
@@ -13,23 +13,23 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var bookAddingData = new BookData();
+            var bookData = new BookData();
 
             Console.WriteLine("Введите название книги:");
-            bookAddingData.Title = Console.ReadLine();
+            bookData.Title = Console.ReadLine();
 
             Console.WriteLine("Введите автора книги:");
-            bookAddingData.Author = Console.ReadLine();
+            bookData.Author = Console.ReadLine();
 
             Console.WriteLine("Введите год издания:");
-            bookAddingData.Year = Console.ReadLine();
+            bookData.Year = Console.ReadLine();
 
             Console.WriteLine("Введите жанр книги:");
-            bookAddingData.Genre = Console.ReadLine();
+            bookData.Genre = Console.ReadLine();
 
             try
             {
-                _bookService.AddBook(bookAddingData);
+                _bookService.AddBook(bookData);
 
                 SuccessMessage.Show("Книга успешно добавлена!");
             }

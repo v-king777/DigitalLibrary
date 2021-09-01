@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     class BookFindingByGenreAndYearView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookFindingByGenreAndYearView(BookService bookService)
         {
@@ -13,23 +13,20 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var bookFindingData = new BookData();
+            var bookData = new BookData();
 
             Console.WriteLine("Введите жанр книги:");
-            bookFindingData.Genre = Console.ReadLine();
+            bookData.Genre = Console.ReadLine();
 
             Console.WriteLine("Введите начальную дату:");
-            bookFindingData.StartYear = Console.ReadLine();
+            bookData.StartYear = Console.ReadLine();
 
             Console.WriteLine("Введите конечную дату:");
-            bookFindingData.EndYear = Console.ReadLine();
+            bookData.EndYear = Console.ReadLine();
 
             try
             {
-                var books = _bookService.FindBooksByGenreAndYear(
-                    bookFindingData.Genre, 
-                    bookFindingData.StartYear, 
-                    bookFindingData.EndYear);
+                var books = _bookService.FindBooksByGenreAndYear(bookData);
 
                 foreach (var book in books)
                 {

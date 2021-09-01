@@ -4,7 +4,7 @@ namespace DigitalLibrary
 {
     public class BookUpdatingView
     {
-        private BookService _bookService;
+        private readonly BookService _bookService;
 
         public BookUpdatingView(BookService bookService)
         {
@@ -13,27 +13,27 @@ namespace DigitalLibrary
 
         public void Show()
         {
-            var bookUpdatingData = new BookData();
+            var bookData = new BookData();
 
             Console.WriteLine("Введите Id книги:");
             int.TryParse(Console.ReadLine(), out int id);
-            bookUpdatingData.Id = id;
+            bookData.Id = id;
 
             Console.WriteLine("Введите новое название книги:");
-            bookUpdatingData.Title = Console.ReadLine();
+            bookData.Title = Console.ReadLine();
 
             Console.WriteLine("Введите нового автора книги:");
-            bookUpdatingData.Author = Console.ReadLine();
+            bookData.Author = Console.ReadLine();
 
             Console.WriteLine("Введите новый год издания книги:");
-            bookUpdatingData.Year = Console.ReadLine();
+            bookData.Year = Console.ReadLine();
 
             Console.WriteLine("Введите новый жанр книги:");
-            bookUpdatingData.Genre = Console.ReadLine();
+            bookData.Genre = Console.ReadLine();
 
             try
             {
-                _bookService.UpdateBook(bookUpdatingData);
+                _bookService.UpdateBook(bookData);
 
                 SuccessMessage.Show("Данные книги успешно обновлены!");
             }
