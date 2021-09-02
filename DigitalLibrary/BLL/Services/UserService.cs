@@ -74,7 +74,7 @@ namespace DigitalLibrary
             _userRepository.DeleteById(userData.Id);
         }
 
-        public int UserBooks(UserData userData)
+        public int CountUserBooks(UserData userData)
         {
             if (_userRepository.FindById(userData.Id) == null)
                 throw new UserNotFoundException();

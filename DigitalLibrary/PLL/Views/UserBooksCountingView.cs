@@ -21,7 +21,7 @@ namespace DigitalLibrary
 
             try
             {
-                var count = _userService.UserBooks(userData);
+                var count = _userService.CountUserBooks(userData);
                 SuccessMessage.Show($"Количество выданных на руки книг: {count}");
             }
 

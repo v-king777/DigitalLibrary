@@ -16,7 +16,7 @@ namespace DigitalLibrary
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"data source=[имя_сервера];database=[имя_базы];trusted_connection=true");
+                @"data source=VOVAN-PC\SQLEXPRESS;database=DigitalLibrary;trusted_connection=true");
         }
     }
 }
