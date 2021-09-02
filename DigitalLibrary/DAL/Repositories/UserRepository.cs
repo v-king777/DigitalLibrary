@@ -14,7 +14,7 @@ namespace DigitalLibrary
             }
         }
 
-        public List<User> FindAll()
+        public IEnumerable<User> FindAll()
         {
             using (var db = new AppContext())
             {
@@ -75,7 +75,7 @@ namespace DigitalLibrary
     {
         void Create(User user);
 
-        List<User> FindAll();
+        IEnumerable<User> FindAll();
 
         User FindById(int id);
 
