@@ -26,7 +26,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                return db.Users.Where(x => x.Id == id).FirstOrDefault();
+                return db.Users.FirstOrDefault(x => x.Id == id);
             }
         }
 
@@ -34,7 +34,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                return db.Users.Where(x => x.Email == email).FirstOrDefault();
+                return db.Users.FirstOrDefault(x => x.Email == email);
             }
         }
         
@@ -42,7 +42,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                var updated = db.Users.Where(x => x.Id == id).FirstOrDefault();
+                var updated = db.Users.FirstOrDefault(x => x.Id == id);
 
                 updated.Name = user.Name;
                 updated.Email = user.Email;
@@ -55,7 +55,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                var deleted = db.Users.Where(x => x.Id == id).FirstOrDefault();
+                var deleted = db.Users.FirstOrDefault(x => x.Id == id);
 
                 db.Users.Remove(deleted);
                 db.SaveChanges();

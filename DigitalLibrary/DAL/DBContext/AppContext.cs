@@ -16,7 +16,7 @@ namespace DigitalLibrary
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
-                @"data source=[имя_сервера];database=[имя_базы];trusted_connection=true");
+                @"data source=[имя_сервера];database=[имя_БД];trusted_connection=true");
         }
     }
 }

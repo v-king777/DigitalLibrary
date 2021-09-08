@@ -26,7 +26,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                return db.Books.Where(x => x.Id == id).FirstOrDefault();
+                return db.Books.FirstOrDefault(x => x.Id == id);
             }
         }
 
@@ -34,7 +34,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                var updated = db.Books.Where(x => x.Id == id).FirstOrDefault();
+                var updated = db.Books.FirstOrDefault(x => x.Id == id);
 
                 updated.Title = book.Title;
                 updated.Author = book.Author;
@@ -49,7 +49,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                var deleted = db.Books.Where(x => x.Id == id).FirstOrDefault();
+                var deleted = db.Books.FirstOrDefault(x => x.Id == id);
 
                 db.Books.Remove(deleted);
                 db.SaveChanges();
@@ -60,8 +60,8 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                var book = db.Books.Where(x => x.Id == bookId).FirstOrDefault();
-                var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+                var book = db.Books.FirstOrDefault(x => x.Id == bookId);
+                var user = db.Users.FirstOrDefault(x => x.Id == userId);
 
                 book.UserId = user.Id;
 
@@ -73,7 +73,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                var book = db.Books.Where(x => x.Id == id).FirstOrDefault();
+                var book = db.Books.FirstOrDefault(x => x.Id == id);
                 book.UserId = null;
                 db.SaveChanges();
             }
@@ -83,7 +83,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                var book = db.Books.Where(x => x.Id == id).FirstOrDefault();
+                var book = db.Books.FirstOrDefault(x => x.Id == id);
                 return book.UserId != null;
             }
         }
@@ -102,7 +102,7 @@ namespace DigitalLibrary
         {
             using (var db = new AppContext())
             {
-                return db.Books.Where(x => x.Year == db.Books.Max(x => x.Year)).FirstOrDefault();
+                return db.Books.FirstOrDefault(x => x.Year == db.Books.Max(x => x.Year));
             }
         }
 
